@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SD_330_W22SD_Labs.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SD_330_W22SD_LabsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SD_330_W22SD_LabsContext") ?? throw new InvalidOperationException("Connection string 'SD_330_W22SD_LabsContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
